@@ -1,6 +1,8 @@
 package demo
 
 import dev.valvassori.Fluks
+import dev.valvassori.ext.valueFlow
+import dev.valvassori.middlewares.logMiddleware
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -37,11 +39,13 @@ class MainStore : Fluks.Store<MainState>() {
 }
 
 fun main() = runBlocking {
-    val store = MainStore()
+    val store = MainStore().apply {
+        applyMiddleware(logMiddleware())
+    }
 
     val job = store
         .valueFlow
-        .onEach { println("Store with state: $it") }
+        .onEach { "Store with state: $it".printLog() }
         .launchIn(this)
 
     launch {
@@ -59,4 +63,10 @@ fun main() = runBlocking {
     }.join()
 
     job.cancel()
+}
+
+private fun String.printLog() {
+    println()
+    println(this)
+    println()
 }
