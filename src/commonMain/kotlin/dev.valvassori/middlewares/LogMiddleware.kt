@@ -20,7 +20,7 @@ fun <S : Fluks.State> logMiddleware(
 
     val updatedValue = next(action)
 
-    messages.add("[New State] $updatedValue")
+    messages.add("[New State]: $updatedValue")
     messages.forEach { logger.log(it) }
 
     updatedValue

@@ -9,15 +9,15 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 @ExperimentalCoroutinesApi
-fun Fluks.Store<*>.launch(
+fun <T: Fluks.State> Fluks.Store<T>.launch(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
-    block: suspend Fluks.Store<*>.() -> Unit
+    block: suspend Fluks.Store<T>.() -> Unit
 ) = scope.launch(context, start) { block() }
 
 @ExperimentalCoroutinesApi
-fun Fluks.Store<*>.async(
+fun <T: Fluks.State> Fluks.Store<T>.async(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
-    block: suspend Fluks.Store<*>.() -> Unit
+    block: suspend Fluks.Store<T>.() -> Unit
 ) = scope.async(context, start) { block() }

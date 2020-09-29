@@ -3,12 +3,14 @@ package dev.valvassori
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlin.coroutines.CoroutineContext
 
 @ExperimentalCoroutinesApi
 fun <S : Fluks.State> store(
     initialValue: S,
-    reducer: Reducer<S>
-): Fluks.Store<S> = object : Fluks.Store<S>() {
+    reducer: Reducer<S>,
+    context: CoroutineContext = Dispatchers.Default,
+): Fluks.Store<S> = object : Fluks.Store<S>(context) {
     override val initialValue: S
         get() = initialValue
 
@@ -24,14 +26,16 @@ object Fluks {
 
     interface State
 
-    abstract class Store<S : State> : Dispatcher {
+    abstract class Store<S : State> constructor(
+        baseContext: CoroutineContext = Dispatchers.Default,
+    ) : Dispatcher {
 
         abstract val initialValue: S
         abstract fun reduce(currentState: S, action: Action): S
 
         internal val reducer: Reducer<S> = Reducer { currentState, action -> reduce(currentState, action) }
         internal val state by lazy { MutableStateFlow(initialValue) }
-        internal val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+        internal val scope = CoroutineScope(baseContext + SupervisorJob())
 
         private val _queue: Channel<Action> by lazy { Channel(Channel.UNLIMITED) }
         private var _middlewares: ChainNode<S> = asChainNode()

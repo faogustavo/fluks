@@ -40,6 +40,9 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.9")
+                implementation("io.mockk:mockk:1.10.2")
             }
         }
         val nativeMain by getting

@@ -1,8 +1,10 @@
+@file:JvmName("StoreExtKt")
 package dev.valvassori.ext
 
 import dev.valvassori.Fluks
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlin.jvm.JvmName
 
 @ExperimentalCoroutinesApi
 val <S : Fluks.State> Fluks.Store<S>.value: S

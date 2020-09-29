@@ -54,6 +54,6 @@ internal class ChainNode<S : Fluks.State>(
 
 @ExperimentalCoroutinesApi
 internal fun <S : Fluks.State> Fluks.Store<S>.asChainNode() = ChainNode<S>(
-    middleware = { _, action, _ -> reduce(value , action) },
+    middleware = { _, action, _ -> reduce(value, action) },
     nextNode = null
 )
