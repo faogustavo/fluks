@@ -56,10 +56,10 @@ object Fluks {
         }
 
         fun applyMiddleware(middleware: Middleware<S>) {
-            applyMiddlewares(listOf(middleware))
+            applyMiddleware(listOf(middleware))
         }
 
-        fun applyMiddlewares(middlewares: List<Middleware<S>>) {
+        fun applyMiddleware(middlewares: List<Middleware<S>>) {
             _middlewares = createChain(middlewares)
         }
     }
