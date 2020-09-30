@@ -1,6 +1,7 @@
 package dev.valvassori.fluks
 
 import dev.valvassori.fluks.ext.value
+import dev.valvassori.fluks.util.CoroutineTestRule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

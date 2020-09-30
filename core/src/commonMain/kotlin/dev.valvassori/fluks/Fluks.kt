@@ -42,6 +42,7 @@ object Fluks {
 
         init {
             scope.launch {
+                register()
                 for (action in _queue) {
                     state.value = _middlewares.execute(
                         store = this@Store,
@@ -61,6 +62,10 @@ object Fluks {
 
         fun applyMiddleware(middlewares: List<Middleware<S>>) {
             _middlewares = createChain(middlewares)
+        }
+
+        private fun register() {
+            GlobalDispatcher.register(this)
         }
     }
 }

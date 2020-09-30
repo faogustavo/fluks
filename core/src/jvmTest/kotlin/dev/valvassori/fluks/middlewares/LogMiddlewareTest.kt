@@ -1,13 +1,15 @@
-package dev.valvassori.fluks
+package dev.valvassori.fluks.middlewares
 
+import dev.valvassori.fluks.Fluks
+import dev.valvassori.fluks.Next
 import dev.valvassori.fluks.ext.value
-import dev.valvassori.fluks.middlewares.Logger
-import dev.valvassori.fluks.middlewares.logMiddleware
 import io.mockk.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 // TODO: Migrate to `commonTest` module after the fix from this bug https://github.com/mockk/mockk/issues/322
+@ExperimentalCoroutinesApi
 class LogMiddlewareTest {
 
     data class State(val updated: Boolean) : Fluks.State

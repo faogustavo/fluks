@@ -214,14 +214,31 @@ store.applyMiddleware(stateLogMiddleware)
 store.applyMiddleware(listOf(stateLogMiddleware))
 ```
 
-Be careful with those functions if you have multiple middlewares. Each time you call this function,
+Be careful with the `applyMiddleware` function if you have multiple middlewares. Each time you call this function,
 a new chain is created and overwrites the previous one.
+
+## Global Dispatcher
+
+In some scenarios, you will need to dispatch an action to all of your stores (like a logout to clear
+the user content). If this is the case, we have a global function called `dispatch(Fluks.Action)` that 
+receives and action and calls all your stores.
+
+```kotlin
+object Logout : Fluks.Action
+
+val accountStore = store(emptyAccountState, accountReducer)
+val ordersStore = store(emptyOrdersState, ordersReducer)
+
+dispatch(Logout)
+
+assertFalse(accountStore.value.isUserLoggedIn)
+assertTrue(ordersStore.value.orders.isEmpty())
+```
 
 ## Next steps
 
 - [ ] Improve unit tests
 - [ ] Improve documentation
 - [ ] Github CI to run checks
-- [ ] Add a GlobalDispatcher
 - [ ] Deploy the library
 - [ ] Integration for android Jetpack Compose

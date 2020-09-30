@@ -1,6 +1,7 @@
-package dev.valvassori.fluks
+package dev.valvassori.fluks.util
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.resetMain
@@ -9,6 +10,7 @@ import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 import kotlin.coroutines.ContinuationInterceptor
 
+@ExperimentalCoroutinesApi
 class CoroutineTestRule : TestWatcher(), TestCoroutineScope by TestCoroutineScope() {
     val testDispatcher = coroutineContext[ContinuationInterceptor] as TestCoroutineDispatcher
 
