@@ -1,4 +1,4 @@
-package dev.valvassori.util
+package dev.valvassori.fluks
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.TestCoroutineDispatcher

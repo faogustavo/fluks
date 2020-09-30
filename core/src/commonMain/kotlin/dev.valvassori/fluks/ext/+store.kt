@@ -1,7 +1,7 @@
 @file:JvmName("StoreExtKt")
-package dev.valvassori.ext
+package dev.valvassori.fluks.ext
 
-import dev.valvassori.Fluks
+import dev.valvassori.fluks.Fluks
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlin.jvm.JvmName

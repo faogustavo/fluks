@@ -1,8 +1,8 @@
-package dev.valvassori.middlewares
+package dev.valvassori.fluks.middlewares
 
-import dev.valvassori.Fluks
-import dev.valvassori.Middleware
-import dev.valvassori.ext.value
+import dev.valvassori.fluks.Fluks
+import dev.valvassori.fluks.Middleware
+import dev.valvassori.fluks.ext.value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 fun interface Logger {

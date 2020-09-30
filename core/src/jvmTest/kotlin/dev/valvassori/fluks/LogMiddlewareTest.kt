@@ -1,10 +1,9 @@
-package dev.valvassori.middlewares
+package dev.valvassori.fluks
 
-import dev.valvassori.Fluks
-import dev.valvassori.Next
-import dev.valvassori.ext.value
+import dev.valvassori.fluks.ext.value
+import dev.valvassori.fluks.middlewares.Logger
+import dev.valvassori.fluks.middlewares.logMiddleware
 import io.mockk.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

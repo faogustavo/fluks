@@ -1,4 +1,4 @@
-package dev.valvassori
+package dev.valvassori.fluks
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel

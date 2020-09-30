@@ -1,6 +1,6 @@
-package dev.valvassori.ext
+package dev.valvassori.fluks.ext
 
-import dev.valvassori.Fluks
+import dev.valvassori.fluks.Fluks
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async

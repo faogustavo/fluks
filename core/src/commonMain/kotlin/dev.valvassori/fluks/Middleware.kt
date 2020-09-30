@@ -1,6 +1,6 @@
-package dev.valvassori
+package dev.valvassori.fluks
 
-import dev.valvassori.ext.value
+import dev.valvassori.fluks.ext.value
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
