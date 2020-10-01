@@ -1,19 +1,38 @@
 
 plugins {
     kotlin("multiplatform") version "1.4.0"
+    id("maven")
+    id("maven-publish")
 }
 
 kotlin {
     targets {
+        js {
+            browser()
+            nodejs()
+        }
         jvm {
             compilations.all {
                 kotlinOptions.jvmTarget = "1.8"
             }
         }
 
+        ios()
+        tvos()
+        watchos()
+        macosX64()
+
         linuxX64()
         mingwX64()
-        macosX64()
+    }
+
+    configure(listOf(targets["metadata"], jvm(), js())) {
+        mavenPublication {
+            val targetPublication = this@mavenPublication
+            tasks.withType<AbstractPublishToMaven>()
+                .matching { it.publication == targetPublication }
+                .all { onlyIf { findProperty("isMainHost") == "true" } }
+        }
     }
 
     targets.all {
@@ -55,13 +74,38 @@ kotlin {
         val macosX64Main by getting {
             dependsOn(desktopMain)
         }
-
         val mingwX64Main by getting {
             dependsOn(desktopMain)
         }
-
         val linuxX64Main by getting {
             dependsOn(desktopMain)
+        }
+    }
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+        maven {
+            val user = "faogustavo"
+            val repo = "maven"
+            val name = "fluks"
+
+            setUrl("https://api.bintray.com/maven/$user/$repo/$name/;publish=0;override=1")
+
+            credentials {
+                username = if(project.hasProperty("bintrayUser")) {
+                    project.property("bintrayUser").toString()
+                } else {
+                    System.getenv("BINTRAY_USER")
+                }
+
+                password = if(project.hasProperty("bintrayApiKey")) {
+                    project.property("bintrayApiKey").toString()
+                } else {
+                    System.getenv("BINTRAY_KEY")
+                }
+            }
         }
     }
 }

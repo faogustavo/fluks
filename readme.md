@@ -1,6 +1,18 @@
 # Fluks
 
-Implementation of [flux application architecture](https://facebook.github.io/flux/) on top of [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html).
+<p align="center">
+    <a href="https://bintray.com/faogustavo/maven/fluks"><img src="https://img.shields.io/badge/dynamic/json.svg?label=latest%20release&url=https%3A%2F%2Fapi.bintray.com%2F%2Fpackages%2Ffaogustavo%2Fmaven%2Ffluks%2Fversions%2F_latest&query=name&colorB=0094cd&style=for-the-badge" alt="Bintray"/></a>
+    <a href="https://www.apache.org/licenses/LICENSE-2.0.html"><img src="https://img.shields.io/github/license/faogustavo/fluks.svg?style=for-the-badge" alt="License"/></a>
+    <a href="https://github.com/faogustavo/fluks/issues"><img src="https://img.shields.io/github/issues/faogustavo/fluks.svg?style=for-the-badge" alt="GitHub issues"/></a>
+</p>
+
+<p align="center">
+    <a href="/"><img src="https://img.shields.io/badge/Kotlin%20Version-1.4.0-blue?style=for-the-badge&logo=Kotlin" alt="GitHub top language"/></a>
+    <a href="/"><img src="https://img.shields.io/github/languages/top/faogustavo/fluks.svg?style=for-the-badge&logoColor=white" alt="GitHub top language"/></a>
+    <a href="/"><img src="https://img.shields.io/badge/KOTLIN%20MULTIPLATFORM-yes-green?style=for-the-badge" alt="GitHub top language"/></a>
+</p>
+
+Implementation of [flux application architecture](https://facebook.github.io/flux/) on top of [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) for multiplatform projects.
 
 ```kotlin
 // Define your state
@@ -53,10 +65,10 @@ store.valueFlow
 
 ## Installation
 
-Add this implementation to you gradle file:
+Add this implementation to you gradle file: 
 
 ```groovy
-implementation "dev.valvassori:fluks:$fluks_version"
+implementation "dev.valvassori.fluks:core:$fluks_version"
 ```
 
 ## Usage
@@ -240,5 +252,4 @@ assertTrue(ordersStore.value.orders.isEmpty())
 - [ ] Improve unit tests
 - [ ] Improve documentation
 - [ ] Github CI to run checks
-- [ ] Deploy the library
 - [ ] Integration for android Jetpack Compose

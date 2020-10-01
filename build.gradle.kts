@@ -13,6 +13,6 @@ allprojects {
         google()
     }
 
-    group = "dev.valvassori"
-    version = "1.0.0-dev"
+    group = "dev.valvassori.fluks"
+    version = "1.0.0"
 }

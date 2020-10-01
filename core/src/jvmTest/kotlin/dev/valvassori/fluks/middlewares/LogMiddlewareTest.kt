@@ -63,7 +63,7 @@ class LogMiddlewareTest {
     }
 
     private fun mock() {
-        mockkStatic("dev.valvassori.ext.StoreExtKt")
+        mockkStatic("dev.valvassori.fluks.ext.StoreExtKt")
         every { store.value } returns State(false)
         every { next.invoke(any()) } returns State(true)
         every { logger.log(any()) } just Runs
