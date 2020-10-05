@@ -9,14 +9,14 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 @ExperimentalCoroutinesApi
-fun <T: Fluks.State> Fluks.Store<T>.launch(
+fun <T : Fluks.State> Fluks.Store<T>.launch(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     block: suspend Fluks.Store<T>.() -> Unit
 ) = scope.launch(context, start) { block() }
 
 @ExperimentalCoroutinesApi
-fun <T: Fluks.State> Fluks.Store<T>.async(
+fun <T : Fluks.State> Fluks.Store<T>.async(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     block: suspend Fluks.Store<T>.() -> Unit

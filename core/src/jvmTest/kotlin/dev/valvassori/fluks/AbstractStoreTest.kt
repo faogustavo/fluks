@@ -56,7 +56,6 @@ internal class AbstractStoreTest {
         store.dispatch(Action.Dec)
         store.dispatch(Action.Div(2))
 
-
         assertEquals(4, store.value.count)
     }
 
@@ -82,7 +81,6 @@ internal class AbstractStoreTest {
         store.dispatch(Action.Div(3))
         store.dispatch(Action.Dec)
         store.dispatch(Action.Mult(2))
-
 
         assertEquals(-4, store.value.count)
     }
