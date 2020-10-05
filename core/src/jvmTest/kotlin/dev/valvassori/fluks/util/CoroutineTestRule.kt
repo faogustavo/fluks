@@ -15,8 +15,8 @@ class CoroutineTestRule : TestWatcher(), TestCoroutineScope by TestCoroutineScop
     val testDispatcher = coroutineContext[ContinuationInterceptor] as TestCoroutineDispatcher
 
     override fun starting(description: Description) {
-        super.starting(description)
         Dispatchers.setMain(testDispatcher)
+        super.starting(description)
     }
 
     override fun finished(description: Description) {

@@ -26,9 +26,9 @@ class GlobalDispatcherTest {
 
     @Test
     fun dispatch_callsAllStores() = coroutineTestRule.runBlockingTest {
-        val store1 = store(initialValue, reducer, Dispatchers.Main)
-        val store2 = store(initialValue, reducer, Dispatchers.Main)
-        val store3 = store(initialValue, reducer, Dispatchers.Main)
+        val store1 = store(initialValue = initialValue, context = Dispatchers.Main, reducer = reducer)
+        val store2 = store(initialValue = initialValue, context = Dispatchers.Main, reducer = reducer)
+        val store3 = store(initialValue = initialValue, context = Dispatchers.Main, reducer = reducer)
 
         dispatch(Switch)
 
