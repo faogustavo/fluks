@@ -10,7 +10,7 @@ import org.junit.Test
 import kotlin.test.assertEquals
 
 @ExperimentalCoroutinesApi
-internal class FluksTest {
+internal class AbstractStoreTest {
 
     @get:Rule
     val coroutineTestRule = CoroutineTestRule()

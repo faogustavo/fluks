@@ -96,10 +96,10 @@ sealed class Action : Fluks.Action {
     
 In this step, you can opt for two variants. 
 
-Inherit from `Fluks.Store`;
+Inherit from `AbstractStore`;
 
 ```kotlin
-private class Store : Fluks.Store<State>() {
+private class Store : AbstractStore<State>() {
     override val initialValue: State
         get() = State(count = 0)
 
