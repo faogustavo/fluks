@@ -3,7 +3,12 @@ package dev.valvassori.fluks.middlewares
 import dev.valvassori.fluks.Fluks
 import dev.valvassori.fluks.Next
 import dev.valvassori.fluks.ext.value
-import io.mockk.*
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
