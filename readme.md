@@ -247,9 +247,24 @@ assertFalse(accountStore.value.isUserLoggedIn)
 assertTrue(ordersStore.value.orders.isEmpty())
 ```
 
-## Next steps
+## Combined stores
 
-- [ ] Improve unit tests
-- [ ] Improve documentation
-- [ ] Github CI to run checks
-- [ ] Integration for android Jetpack Compose
+If you have more than one store, and you need to combine them to generate a new state, you can use the 
+`AbstractCombinedStore`. Using it, you need to provide the stores that you depends on, and implement the `combine`
+function.
+
+```kotlin
+data class State0(val count0: Int) : Fluks.State
+data class State1(val count1: Int) : Fluks.State
+data class StateOut(val multiplication: Int) : Fluks.State
+
+val store0 = store(State0(count0 = 1), reducer0)
+val store1 = store(State1(count1 = 1), reducer1)
+
+val combinedStores = combineStores(
+    initialValue = StateOut(multiplication = 1),
+    store0 = store0,
+    store1 = store1,
+    baseContext = Dispatchers.Main
+) { s0, s1 -> StateOut(multiplication = s0.count0 * s1.count1) }
+```
