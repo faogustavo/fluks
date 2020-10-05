@@ -27,25 +27,24 @@ internal class AbstractStoreTest {
     private val store: Fluks.Store<State> by lazy {
         store(
             initialValue = State(0),
-            reducer = reducer { state, action ->
-                when (action) {
-                    is Action.Inc -> state.copy(
-                        count = state.count + 1
-                    )
-                    is Action.Dec -> state.copy(
-                        count = state.count - 1
-                    )
-                    is Action.Mult -> state.copy(
-                        count = state.count * action.multiplier
-                    )
-                    is Action.Div -> state.copy(
-                        count = state.count / action.divider
-                    )
-                    else -> state
-                }
-            },
             context = Dispatchers.Main
-        )
+        ) { state, action ->
+            when (action) {
+                is Action.Inc -> state.copy(
+                    count = state.count + 1
+                )
+                is Action.Dec -> state.copy(
+                    count = state.count - 1
+                )
+                is Action.Mult -> state.copy(
+                    count = state.count * action.multiplier
+                )
+                is Action.Div -> state.copy(
+                    count = state.count / action.divider
+                )
+                else -> state
+            }
+        }
     }
 
     @Test
