@@ -94,17 +94,8 @@ publishing {
             setUrl("https://api.bintray.com/maven/$user/$repo/$name/;publish=0;override=1")
 
             credentials {
-                username = if (project.hasProperty("bintrayUser")) {
-                    project.property("bintrayUser").toString()
-                } else {
-                    System.getenv("BINTRAY_USER")
-                }
-
-                password = if (project.hasProperty("bintrayApiKey")) {
-                    project.property("bintrayApiKey").toString()
-                } else {
-                    System.getenv("BINTRAY_KEY")
-                }
+                username = System.getenv("BINTRAY_USER")
+                password = System.getenv("BINTRAY_KEY")
             }
         }
     }
