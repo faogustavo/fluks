@@ -7,7 +7,7 @@ plugins {
 
 kotlin {
     targets {
-        js {
+        js(IR) {
             browser()
             nodejs()
         }

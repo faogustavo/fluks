@@ -52,6 +52,10 @@ abstract class AbstractStore<S : Fluks.State> constructor(
         applyMiddleware(listOf(middleware))
     }
 
+    final override fun addMiddleware(middleware: Middleware<S>) {
+        _middlewares = _middlewares + middleware
+    }
+
     final override fun applyMiddleware(middlewares: List<Middleware<S>>) {
         _middlewares = createChain(middlewares)
     }
@@ -94,6 +98,10 @@ abstract class AbstractCombinedStore<S0 : Fluks.State, S1 : Fluks.State, SOUT : 
 
     @Deprecated("Combined stores just react to changes in the other stores")
     final override fun dispatch(action: Fluks.Action) {
+    }
+
+    @Deprecated("Combined stores just react to changes in the other stores")
+    final override fun addMiddleware(middleware: Middleware<SOUT>) {
     }
 
     @Deprecated("Combined stores just react to changes in the other stores")

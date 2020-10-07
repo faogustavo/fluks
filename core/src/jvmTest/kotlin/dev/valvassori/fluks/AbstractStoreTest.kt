@@ -8,6 +8,8 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @ExperimentalCoroutinesApi
 internal class AbstractStoreTest {
@@ -83,5 +85,53 @@ internal class AbstractStoreTest {
         store.dispatch(Action.Mult(2))
 
         assertEquals(-4, store.value.count)
+    }
+
+    @Test
+    fun addMiddleware_shouldKeepExistingChain() = coroutineTestRule.runBlockingTest {
+        var hadRunMiddleware1 = false
+        var hadRunMiddleware2 = false
+
+        val middleware1 = Middleware<State> { _, action, next ->
+            hadRunMiddleware1 = true
+            next(action)
+        }
+
+        val middleware2 = Middleware<State> { _, action, next ->
+            hadRunMiddleware2 = true
+            next(action)
+        }
+
+        store.addMiddleware(middleware1)
+        store.addMiddleware(middleware2)
+
+        store.dispatch(Action.Inc)
+
+        assertTrue(hadRunMiddleware1)
+        assertTrue(hadRunMiddleware2)
+    }
+
+    @Test
+    fun applyMiddleware_shouldCreateNewChain() = coroutineTestRule.runBlockingTest {
+        var hadRunMiddleware1 = false
+        var hadRunMiddleware2 = false
+
+        val middleware1 = Middleware<State> { _, action, next ->
+            hadRunMiddleware1 = true
+            next(action)
+        }
+
+        val middleware2 = Middleware<State> { _, action, next ->
+            hadRunMiddleware2 = true
+            next(action)
+        }
+
+        store.applyMiddleware(middleware1)
+        store.applyMiddleware(middleware2)
+
+        store.dispatch(Action.Inc)
+
+        assertFalse(hadRunMiddleware1)
+        assertTrue(hadRunMiddleware2)
     }
 }

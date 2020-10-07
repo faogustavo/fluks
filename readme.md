@@ -226,8 +226,14 @@ store.applyMiddleware(stateLogMiddleware)
 store.applyMiddleware(listOf(stateLogMiddleware))
 ```
 
-Be careful with the `applyMiddleware` function if you have multiple middlewares. Each time you call this function,
-a new chain is created and overwrites the previous one.
+If you already have a created chain of middlewares, you can just add a new one to it by calling `addMiddleware(middleware)`.
+
+```kotlin
+store.addMiddleware(stateLogMiddleware)
+```
+
+Be careful with the `applyMiddleware` function if you already declared your middlewares. Each time you call this function,
+you create a new chain and overwrites the previous one. If you just want to add a new node, use the `addMiddleware` function.
 
 ## Global Dispatcher
 

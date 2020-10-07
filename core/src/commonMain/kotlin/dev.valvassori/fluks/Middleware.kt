@@ -36,6 +36,14 @@ internal fun <S : Fluks.State> Fluks.Store<S>.createChain(
 }
 
 @ExperimentalCoroutinesApi
+internal operator fun <S : Fluks.State> ChainNode<S>.plus(
+    middleware: Middleware<S>
+): ChainNode<S> = ChainNode(
+    middleware = middleware,
+    nextNode = this
+)
+
+@ExperimentalCoroutinesApi
 internal class ChainNode<S : Fluks.State>(
     private val middleware: Middleware<S>,
     private val nextNode: ChainNode<S>?,
