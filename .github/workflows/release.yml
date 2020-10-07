@@ -37,9 +37,9 @@ jobs:
         run: ./gradlew assemble
 
       - name: Deploy
-       env:
-         RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-       run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
   mingwDeploy:
     needs: linuxDeploy
     runs-on: windows-latest
@@ -60,9 +60,9 @@ jobs:
         run: ./gradlew assemble
 
       - name: Deploy
-       env:
-         RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-       run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
   macosDeploy:
     needs: mingwDeploy
     runs-on: macos-latest
@@ -83,6 +83,6 @@ jobs:
         run: ./gradlew assemble
 
       - name: Deploy
-       env:
-         RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-       run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
