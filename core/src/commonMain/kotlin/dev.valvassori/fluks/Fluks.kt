@@ -23,6 +23,7 @@ object Fluks {
         internal val state by lazy { MutableStateFlow(initialValue) }
         internal val scope = CoroutineScope(baseContext + SupervisorJob())
 
+        open fun addMiddleware(middleware: Middleware<S>) {}
         open fun applyMiddleware(middleware: Middleware<S>) {}
         open fun applyMiddleware(middlewares: List<Middleware<S>>) {}
     }
