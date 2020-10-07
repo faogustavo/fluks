@@ -41,7 +41,7 @@ jobs:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-        run: ./gradlew publish -DdeploymentVersion=$RELEASE_VERSION
+        run: ./gradlew publish
   mingwDeploy:
     needs: unixDeploy
     runs-on: windows-latest
@@ -66,4 +66,4 @@ jobs:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
           BINTRAY_KEY: ${{ secrets.BINTRAY_KEY }}
           BINTRAY_USER: ${{ secrets.BINTRAY_USER }}
-        run: ./gradlew publishMingwX64PublicationToMavenRepository -DdeploymentVersion=$RELEASE_VERSION
+        run: ./gradlew publishMingwX64PublicationToMavenRepository

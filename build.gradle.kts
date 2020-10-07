@@ -14,5 +14,5 @@ allprojects {
     }
 
     group = "dev.valvassori.fluks"
-    version = System.getProperty("deploymentVersion")
+    version = System.getenv("RELEASE_VERSION")
 }
